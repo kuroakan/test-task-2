@@ -10,7 +10,7 @@ import (
 )
 
 func main() {
-	rand.Seed(time.Now().UnixNano())
+	rand.NewSource(time.Now().UnixNano())
 	if len(os.Args) < 5 {
 		log.Fatal("Usage: go run main.go X Y Z S where:\nX - First Coordinate\nY - Second Coordinate\nZ - Matrix size, default 100\nS - show created matrix, 1 to show, 0 to don't")
 	}
@@ -38,8 +38,6 @@ func main() {
 
 	x--
 	y--
-
-	rand.NewSource(time.Now().UnixNano())
 
 	matrix := make([][]any, z)
 	for i := range matrix {
