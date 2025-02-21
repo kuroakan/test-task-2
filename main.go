@@ -80,27 +80,31 @@ func main() {
 	sum -= toFloat(matrix[x][y])
 
 	if s == 1 {
-		formatValue := func(value any) string {
-			switch v := value.(type) {
-			case int:
-				return fmt.Sprintf("%6d", v)
-			case float32, float64:
-				return fmt.Sprintf("%6.2f", v)
-			case string:
-				return fmt.Sprintf("%6s", v)
-			default:
-				return "      "
-			}
-		}
+		drawMatrix(matrix, z)
+	}
 
-		fmt.Println("\nGenerated Matrix:")
-		for i := 0; i < z; i++ {
-			for j := 0; j < z; j++ {
-				fmt.Print(formatValue(matrix[i][j]), " ")
-			}
-			fmt.Println()
+	fmt.Printf("\nSum of row %d and column %d: %.2f\n", x+1, y+1, sum)
+}
+
+func drawMatrix(matrix [][]any, size int) {
+	formatValue := func(value any) string {
+		switch v := value.(type) {
+		case int:
+			return fmt.Sprintf("%6d", v)
+		case float32, float64:
+			return fmt.Sprintf("%6.2f", v)
+		case string:
+			return fmt.Sprintf("%6s", v)
+		default:
+			return "      "
 		}
 	}
 
-	fmt.Printf("Sum of row %d and column %d: %.2f\n", x+1, y+1, sum)
+	fmt.Println("\nGenerated Matrix:")
+	for i := 0; i < size; i++ {
+		for j := 0; j < size; j++ {
+			fmt.Print(formatValue(matrix[i][j]), " ")
+		}
+		fmt.Println()
+	}
 }
